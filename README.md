@@ -65,11 +65,19 @@ Compare the file hello.txt and rose.txt
 Create a batch file named on the desktop. The batch file need to have a variable assigned with a desired name for ex. name="John" and display as "Hello, John".
 
 
-
+## PROGRAM
+```
+@echo off
+set name=John
+echo Hello, %name%
+pause
+```
 
 
 ## OUTPUT
 
+
+<img width="445" height="80" alt="Screenshot 2026-05-15 111246" src="https://github.com/user-attachments/assets/4f430daa-deb4-4739-ba7c-760713b1ff13" />
 
 
 Create a batch file  on the desktop that checks whether a user-input number is odd or not. The script should:
@@ -80,21 +88,57 @@ Ask the user if they want to check another number.
 Repeat the process if the user enters Y, and exit with a thank-you message if the user enters N.
 Handle invalid inputs for the continuation prompt (Y/N) gracefully.
 
+## PROGRAM
+```
+@echo off
 
+:START
+
+set /p num=Enter a number: 
+
+set /a rem=%num% %% 2
+
+if %rem%==0 (
+    echo The number is Even
+) else (
+    echo The number is Odd
+)
+
+set /p choice=Do you want to continue (Y/N)? 
+
+if /I "%choice%"=="Y" goto START
+if /I "%choice%"=="N" goto END
+
+echo Invalid Input
+goto START
+
+:END
+echo Thank You
+pause
+```
 
 ## OUTPUT
 
-
-
+<img width="635" height="204" alt="Screenshot 2026-05-15 111556" src="https://github.com/user-attachments/assets/d24edc05-af62-4cf1-ad2f-ce32e0ee6d46" />
 
 Write a batch file that uses a FOR loop to iterate over a sequence of numbers (1 to 5) and displays each number with the label Number:. The output should pause at the end.
 
 
+## PROGRAM
+```
+@echo off
 
+for /L %%i in (1,1,5) do (
+    echo Number: %%i
+)
+
+pause
+```
 
 ## OUTPUT
 
 
+<img width="511" height="172" alt="Screenshot 2026-05-15 111836" src="https://github.com/user-attachments/assets/7661832e-ce5d-4ab0-9850-8a92191f9db7" />
 
 
 Write a batch script to check whether a file named sample.txt exists in the current directory. If the file exists, display the message sample.txt exists. Otherwise, display sample.txt does not exist. Pause the script at the end to view the result.
@@ -105,7 +149,23 @@ Make sure the script works for files located in the same directory as the batch 
 Use pause to keep the command window open after displaying the message.
 Expected Output (if the file exists):
 
+## PROGRAM
+```
+@echo off
+
+if exist sample.txt (
+    echo sample.txt exists
+) else (
+    echo sample.txt does not exist
+)
+
+pause
+```
+
 ## OUTPUT
+
+
+<img width="831" height="227" alt="Screenshot 2026-05-15 112954" src="https://github.com/user-attachments/assets/870ac80a-eca8-42b6-87ce-408dcc9a65b1" />
 
 
 Write a batch script that displays a simple menu with three options:
@@ -115,8 +175,47 @@ Exit – Exits the script with a goodbye message
 The script should repeatedly display the menu until the user chooses to exit. Use goto statements to handle menu navigation.
 
 
+## PROGRAM
+```
+@echo off
+
+:MENU
+echo ====================
+echo 1. Say Hello
+echo 2. Create a File
+echo 3. Exit
+echo ====================
+
+set /p choice=Enter your choice: 
+
+if %choice%==1 goto HELLO
+if %choice%==2 goto CREATE
+if %choice%==3 goto EXIT
+
+echo Invalid Choice
+goto MENU
+
+:HELLO
+echo Hello, World!
+pause
+goto MENU
+
+:CREATE
+echo This is a new file > newfile.txt
+echo File Created
+pause
+goto MENU
+
+:EXIT
+echo Goodbye
+pause
+exit
+```
+
 ## OUTPUT
 
+
+<img width="524" height="398" alt="Screenshot 2026-05-15 113239" src="https://github.com/user-attachments/assets/cb9a3331-e909-4d29-bc1b-1c031d04ca6f" />
 
 
 # RESULT:
